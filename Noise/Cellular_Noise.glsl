@@ -24,7 +24,7 @@ void main() {
     vec3 color = vec3(.0);
 
     // uv扩展倍数
-    st *= 5.;
+    st *= 10.;
 
     //取整作为uv块坐标
     //取浮作为uv块内坐标
