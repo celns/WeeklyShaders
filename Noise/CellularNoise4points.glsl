@@ -27,7 +27,7 @@ void main(void)
 
         float min_dist = 0.7; 
 
-
+    //五点遍历，取最短
     for (int i = 0; i < 5; i++) 
     {
         float dist = distance(st, point[i]);

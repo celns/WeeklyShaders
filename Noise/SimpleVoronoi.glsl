@@ -22,6 +22,7 @@ void main(void)
 
     st *= 5.0;
 
+    
     vec2 int_st = floor(st);
     vec2 fract_st = fract(st);
     //最短距离
@@ -40,14 +41,14 @@ void main(void)
             vec2 pixpoint = neroffset + point - fract_st;
             float ppdistance = length(pixpoint);
 
-            //不是取最小，而是通过一个判断
-            //判断提供了交互可能，也就是是说，我们可以加一个鼠标控制的点进去
-            
+              //不是取最小，而是通过一个判断来实现
             if(ppdistance < min_distance)
             {
                 min_distance = ppdistance;
                 m_point = point;
             }
+            
+            
 
         }
     }

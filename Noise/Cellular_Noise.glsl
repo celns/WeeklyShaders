@@ -24,7 +24,7 @@ void main() {
     vec3 color = vec3(.0);
 
     // uv扩展倍数
-    st *= 10.;
+    st *= 3.;
 
     //取整作为uv块坐标
     //取浮作为uv块内坐标
@@ -46,7 +46,7 @@ void main() {
             vec2 point = random2(i_st + neighbor );
 
 			// 让当前遍历的uv块的特征点动起来
-            point = 0.5 + 0.5*sin(10. * u_time + 6.2831*point);
+            point = 0.5 + 0.5*sin(1. * u_time + 6.2831*point);
 
 			// 当前像素与特征点的向量
             //
