@@ -24,7 +24,7 @@ void main(void)
 
     vec2 int_st = floor(st);
     vec2 fract_st = fract(st);
-
+    //最短距离
     float min_distance = 10.0;
     vec2 m_point;
 
