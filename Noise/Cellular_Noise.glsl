@@ -19,7 +19,7 @@ vec2 random2( vec2 p ) {
 
 void main() {
     vec2 st = gl_FragCoord.xy/u_resolution.xy;
-    //在y轴扩展，也就是说可以将输出窗口拉长，同时会保证基于x轴的比例正确
+    //保持输出宽高比，也就是说输出界面可以随意放大缩小
     st.x *= u_resolution.x/u_resolution.y;
     vec3 color = vec3(.0);
 
