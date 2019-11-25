@@ -12,7 +12,12 @@ uniform float u_time;
 // Some useful functions
 vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
 vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
-vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
+//软化
+vec3 permute(vec3 x) 
+{
+     return mod289(((x*34.0)+1.0)*x);
+     //return mod289(x);
+}
 
 //
 // Description : GLSL 2D simplex noise function
@@ -23,7 +28,7 @@ vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
 //  Copyright (C) 2011 Ashima Arts. All rights reserved.
 //  Distributed under the MIT License. See LICENSE file.
 //  https://github.com/ashima/webgl-noise
-//
+//噪声函数
 float snoise(vec2 v) {
 
     // Precompute values for skewed triangular grid
@@ -83,6 +88,7 @@ float snoise(vec2 v) {
     return 130.0 * dot(m, g);
 }
 
+//fbm函数
 #define OCTAVES 3
 float turbulence (in vec2 st) {
     // Initial values
@@ -93,7 +99,7 @@ float turbulence (in vec2 st) {
     // Loop of octaves
     for (int i = 0; i < OCTAVES; i++) {
         value += amplitude * abs(snoise(st));
-        st *= 2.;
+        st *= 10.;
         amplitude *= .5;
     }
     return value;
@@ -104,7 +110,11 @@ void main() {
     st.x *= u_resolution.x/u_resolution.y;
     vec3 color = vec3(0.0);
 
-    color += turbulence(st*3.0);
+    color +=  turbulence(st*1.0);
+
+    //取反，然后用乘方进行锐化
+    //color += 1.0 - turbulence(st*1.0);
+    //color *= color * color;
 
     gl_FragColor = vec4(color,1.0);
 }
