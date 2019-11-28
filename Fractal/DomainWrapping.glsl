@@ -35,7 +35,7 @@ float noise (in vec2 _st) {
             (d - b) * u.x * u.y;
 }
 
-#define NUM_OCTAVES 5
+#define NUM_OCTAVES 4
 //fbm函数，其中增加了一个旋转的叠加
 float fbm ( in vec2 _st) {
     float v = 0.0;
@@ -54,7 +54,8 @@ float fbm ( in vec2 _st) {
 
 void main() {
     vec2 st = gl_FragCoord.xy/u_resolution.xy*3.;
-    //st += st * abs(sin(u_time*0.1)*3.0);
+    st.x *= u_resolution.x / u_resolution.y;
+    
     vec3 color = vec3(0.0);
 
     vec2 q = vec2(0.);
@@ -67,19 +68,32 @@ void main() {
     r.x = fbm( st + 1.0*q + vec2(1.7,9.2)+ 0.15*u_time );
     r.y = fbm( st + 1.0*q + vec2(8.3,2.8)+ 0.126*u_time);
 
-    float f = fbm(st+r);
+    //可以改变f的取值方式，来观察有什么不同的效果
+    float f = fbm(r);
+    f = fbm(st * r);
 
-    color = mix(vec3(0.101961,0.619608,0.666667),
-                vec3(0.666667,0.666667,0.498039),
+    //使用f的二次函数值作为alpha
+    //进行双色插值
+    color = mix(vec3(0.0745, 0.6667, 0.7216),
+                vec3(0.2078, 0.9333, 0.898),
                 clamp((f*f)*4.0,0.0,1.0));
 
+    //使用q的模作为alpha   
+    //进行color与单色插值
     color = mix(color,
                 vec3(0,0,0.164706),
                 clamp(length(q),0.0,1.0));
 
+    //使用r.x的clamp值作为alpha
+    //进行color与单色插值
     color = mix(color,
-                vec3(0.666667,1,1),
+                vec3(0.702, 1.0, 0.9765),
                 clamp(length(r.x),0.0,1.0));
 
+    //使用f的三次函数对color进行后期处理
     gl_FragColor = vec4((f*f*f+.6*f*f+.5*f)*color,1.);
+    //使用平方进行锐化
+    gl_FragColor = vec4(color * color, 1.0);
+    //
+    //gl_FragColor = vec4(sin(u_time) * color, 1.0);
 }
