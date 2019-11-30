@@ -2,6 +2,7 @@
 precision mediump float;
 #endif
 
+
 uniform sampler2D u_tex0;
 uniform vec2 u_tex0Resolution;
 
@@ -46,7 +47,7 @@ void main(void)
     float scale = 1.0;
     float offset = 0.25;
 
-    float angle = noise(st + u_time * 0.1) * PI;
+    float angle = noise(st + u_time * 0.7) * PI;
     float radius = offset;
 
     st *= scale;
