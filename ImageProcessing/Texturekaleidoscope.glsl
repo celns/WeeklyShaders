@@ -79,7 +79,7 @@ void main () {
 
     st*=3.0;
     //动起来，试试正负号不同的效果
-    //st = fract(st - time);
+    st = fract(st - time);
     //st = fract(st + time);
 
     vec4 color = vec4(st.x,st.y,0.0,1.0);
