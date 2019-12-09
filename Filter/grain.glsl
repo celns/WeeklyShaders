@@ -2,6 +2,8 @@
 precision mediump float;
 #endif
 
+//卷积操作
+
 uniform sampler2D u_tex0;
 
 uniform float u_time;
