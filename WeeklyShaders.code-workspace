@@ -4,7 +4,13 @@
 			"path": "."
 		}
 	],
-	
-	"settings": {}
+	"settings": {
+		
+		"glsl-canvas.textures": {
+			"0": "/ImageProcessing/marker.png",
+			"1": "/ImageProcessing/background.png"
+		}	
+		
+	}
 	//celns@outlook.com
 }
