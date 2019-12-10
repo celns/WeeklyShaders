@@ -14,6 +14,10 @@ uniform sampler2D u_texture_0;
 vec2 center = vec2(0.5,0.5);
 //速度
 float speed = 0.035;
+//波纹大小
+float rippleSize = 0.01;
+//亮度
+float brightness = 1.2;
 
 void main(void)
 {
@@ -33,10 +37,14 @@ void main(void)
 	fixedst.y = (center.y-st.y) *invAspectRatio;
 	//y = center.y - st.y;	
 
-	//ripple深度
-	float r = -sqrt(fixedst.x * fixedst.x + fixedst.y * fixedst.y); //uncoment this line to symmetric ripples
+	//计算距离场的两种方式，区别在于有没有开根号
+	//也就是说没开根就是二次函数，开了根就是线性的
+	//显然看出来开根的，也就线性的，每个波纹相距是一样的
+	//而未开根的，也就是二次的，波纹相距不一样
+	float r = -sqrt(fixedst.x * fixedst.x + fixedst.y * fixedst.y); 
 	r = -(fixedst.x * fixedst.x + fixedst.y * fixedst.y);
-	float depth = 1.0 + 0.5*tan((r+u_time*speed)/0.013);
+	//试试用不同的三角函数构造depth
+	float depth = 0.5 * sin((r+u_time*speed)/rippleSize) + brightness;
 	
 	//ripplemask.x = z;
 	//irpplemask.y = z;
