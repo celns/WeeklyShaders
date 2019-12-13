@@ -35,14 +35,10 @@ float xoffset = 1.0;
 
 void main () {
     vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    st = st * 2.0 - 1.0;
     st.x *= u_resolution.x /u_resolution.y;
     
-    float time = u_time*0.5;
-
-    //x轴偏移
-    //st.x -= xoffset;
-    // 中心偏移
-    st = st - 0.5;
+    float time = u_time * 0.5;
     
     // 笛卡尔转换为极坐标
     float radius = length(st);
