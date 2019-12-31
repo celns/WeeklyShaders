@@ -81,10 +81,10 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 
     // Scene parameters;
 	vec3 base = vec3(0.95, 0.7, 0.2);
-    float count = 8.0;
+    float count = 2.0;
 
-    Gear outer = Gear(0.0, 0.8, 0.08, 4.0, 32.0, 0.9, base);
-    Gear inner = Gear(0.0, 0.4, 0.08, 4.0, 16.0, 0.3, base);
+    Gear outer = Gear(0.0, 0.8, 0.08, 14.0, 32.0, 0.9, base);
+    Gear inner = Gear(0.0, 0.4, 0.08, 14.0, 16.0, 0.3, base);
     
     
     // Draw inner gears back to front:
