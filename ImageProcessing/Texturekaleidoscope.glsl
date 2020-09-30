@@ -10,22 +10,15 @@
 //x = r * cos(θ)
 //y = r * sin(θ)
 
-
-#ifdef GL_ES
-precision mediump float;
-#endif
+#iChannel0 "file:///ImageProcessing/marker.png"
 
 #define PI 3.14159265359
 #define TWO_PI 6.28318530718
 
-uniform sampler2D u_texture_0;
-//uniform vec2 u_tex0Resolution;
 
-uniform vec2 u_resolution;
-uniform vec2 u_mouse;
-uniform float u_time;
 //x轴偏移
-float xoffset = 1.0;
+float xoffset = 1.0; 
+
 
 // Based on Asalga shader
 // https://www.shadertoy.com/view/4ss3WX
@@ -33,12 +26,13 @@ float xoffset = 1.0;
 //在笛卡尔坐标中。x, y 均有变化
 //在极坐标中，r在曾减，同时角度在正负变换
 
-void main () {
-    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+void mainImage (out vec4 fragColor, in vec2 fragCoord) 
+{
+    vec2 st = fragCoord.xy/iResolution.xy;
     st = st * 2.0 - 1.0;
-    st.x *= u_resolution.x /u_resolution.y;
+    st.x *= iResolution.x /iResolution.y;
     
-    float time = u_time * 0.5;
+    float time = iTime * 0.5;
     
     // 笛卡尔转换为极坐标
     float radius = length(st);
@@ -80,7 +74,7 @@ void main () {
 
     vec4 color = vec4(st.x,st.y,0.0,1.0);
     //vec4 color = vec4(0.0);
-    color = texture2D(u_texture_0,st);
+    color = texture2D(iChannel0,st);
 
     gl_FragColor = color;
 }

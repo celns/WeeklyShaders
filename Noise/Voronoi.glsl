@@ -16,7 +16,7 @@ void main(void)
     vec2 points[5];
     points[0] = vec2(0.83,0.75);
     points[1] = vec2(0.60,0.07);
-    points[2] = vec2(0.28,0.64);
+    points[2] = vec2(0.28，0.64);
     points[3] =  vec2(0.31,0.26);
     points[4] = u_mouse.xy /u_resolution.xy;
     //注释掉这一行，在输出窗口有拉伸的情况下，鼠标和屏幕上的点就错位了
