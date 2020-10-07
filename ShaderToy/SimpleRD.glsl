@@ -1,4 +1,4 @@
-#iChannel0 'buf://./ShaderToy/SimpleRDBufferA.glsl'
+#iChannel0 'file://ShaderToy/SimpleRDBufferA.glsl'
 
 
 #define COLOR_MIN 0.2

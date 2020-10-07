@@ -24,7 +24,7 @@
 #define saturation 0.850
 
 //试试注释掉重力波buffer，
-#iChannel0 "buf://./ShaderToy/GravitationalWavesBuffer.glsl"
+#iChannel0 "file://GravitationalWavesBuffer.glsl"
 
 vec3 kali_stars(vec3 from, vec3 dir)
 {

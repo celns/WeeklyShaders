@@ -2,7 +2,7 @@
 // Reaction-diffusion by Flexi.
 // Raymarching by inigo quilez - iq/2013.
 // License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
-#iChannel0 "buf://./ShaderToy/RaymarchedRDBuffer.glsl"
+#iChannel0 "file://ShaderToy/RaymarchedRDBuffer.glsl"
 
 float sdSphere( vec3 p, float s )
 {
